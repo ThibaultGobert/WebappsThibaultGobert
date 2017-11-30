@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {Wishlist} from '../wishlist/wishlist.model';
 
 @Component({
@@ -7,22 +7,16 @@ import {Wishlist} from '../wishlist/wishlist.model';
   styleUrls: ['./wishlist.component.css']
 })
 export class WishlistComponent implements OnInit {
-  private _wishlist: Wishlist;
+  @Input() private wishlist: Wishlist;
 
   constructor() { 
-    this._wishlist = new Wishlist("Thibault");
-    
-    this._wishlist.addWishlistItem('voetbal');
-    this._wishlist.addWishlistItem('scheenlappen');
-    this._wishlist.addWishlistItem('keepershandschoenen');
+
     
   }
-
-  newWishlistItemAdded(wishlistItem){
-    this._wishlist.addWishlistItem(wishlistItem.name);
-  }
-
+ 
   ngOnInit() {
   }
+
+ 
 
 }

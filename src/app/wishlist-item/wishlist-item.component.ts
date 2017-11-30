@@ -9,7 +9,7 @@ import {WishlistItem} from '../wishlist-item/wishlistItem.model';
 })
 export class WishlistItemComponent implements OnInit {
   @Input() public wishlistItem : WishlistItem;
-
+  
   constructor() { }
 
   ngOnInit() {

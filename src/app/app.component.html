@@ -4,7 +4,17 @@
     Welcome to {{title}}!
   </h1>
   <div>
-      <app-wishlist></app-wishlist>
+      <app-wishlist [wishlist]="_wishlist"></app-wishlist>
+
+      <ul>
+        <li *ngFor="let wishlistItem of _wishlist.wishlistItems">
+          <app-wishlist-item [wishlistItem]= "wishlistItem"></app-wishlist-item>
+        </li>
+      </ul>
+      
+      <app-add-wishlist-item (newWishlistItem)="newWishlistItemAdded($event)"></app-add-wishlist-item>
+      
+      
   </div>
 
 </div>
