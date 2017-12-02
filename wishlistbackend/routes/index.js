@@ -15,8 +15,20 @@ router.get('/API/wishlist/', function(req,res,next){
     if(err){
       return next(err);
     }
-    res.json(Wishlist);
+    res.json(wishlist);
   });
 });
+
+router.post('/API/wishlist/', function(req, res, next){
+  let wishlist = new Wishlist({name: req.body.name, wishlistItems: req.body.wishlistItems});
+  wishlist.save(function(err, post){
+    if(err) {
+      return next(err);
+    }
+    res.json(wishlist);
+  });
+});
+
+
 
 module.exports = router;

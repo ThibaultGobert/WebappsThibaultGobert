@@ -7,7 +7,7 @@ import {Wishlist} from '../wishlist/wishlist.model';
   styleUrls: ['./wishlist.component.css']
 })
 export class WishlistComponent implements OnInit {
-  @Input() private wishlist: Wishlist;
+  @Input() public wishlist: Wishlist;
 
   constructor() { 
 

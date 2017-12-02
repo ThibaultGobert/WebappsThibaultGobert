@@ -4,10 +4,15 @@
     Welcome to {{title}}!
   </h1>
   <div>
-      <app-wishlist [wishlist]="_wishlist"></app-wishlist>
+    <ul>
+        <li *ngFor="let wishlist of _wishlist | async">
+           <app-wishlist [wishlist]="wishlist"></app-wishlist>
+        </li>
+    </ul>
+    
 
       <ul>
-        <li *ngFor="let wishlistItem of _wishlist.wishlistItems">
+        <li *ngFor="let wishlistItem of _wishlist.wishlistItems | async">
           <app-wishlist-item [wishlistItem]= "wishlistItem"></app-wishlist-item>
         </li>
       </ul>

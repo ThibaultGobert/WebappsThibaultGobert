@@ -18,8 +18,9 @@ private _wishlistItems = new Array<WishlistItem>();
     return this._wishlistItems;
   }
 
+  /*
   addNewWishlistItem(wishlistItem){
     this._wishlistItems.push(wishlistItem);
   }
-
+*/
 }
