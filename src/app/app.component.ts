@@ -1,41 +1,55 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {WishlistDataService} from './wishlist/wishlist-data.service';
-import {WishlistItemDataService} from './wishlist-item/wishlist-item-data.service';
 import {WishlistItem} from './wishlist-item/wishlistItem.model';
 import {Wishlist} from './wishlist/wishlist.model';
-
+import {Observable} from 'rxjs/Rx';
+import {Subject} from 'rxjs/Subject';
+import 'rxjs/add/operator/takeUntil';;
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [WishlistDataService , WishlistItemDataService]
+  providers: [WishlistDataService]
 })
-export class AppComponent implements OnInit{
+
+export class AppComponent implements OnDestroy, OnInit{
   title = 'app';
-  public _wishlist;
-  private _wishlistItems = new Array<WishlistItem>();
+  public _wishlist : Wishlist[];
+  private myUnsubscribe: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private _wishlistDataService : WishlistDataService, private _wishlistItemDataService : WishlistItemDataService){
-
+  constructor(private _wishlistDataService : WishlistDataService){
+    
   }
 
  ngOnInit(){
-   this._wishlist = this._wishlistDataService.wishlist;
-   //this._wishlistDataService.wishlist.subscribe(items => this._wishlist = items);
+  this._wishlistDataService.wishlist.subscribe(item => {
+    this._wishlist = item;
+  });
  }
+
+ ngOnDestroy(){
+  this.myUnsubscribe.next(true);
+  this.myUnsubscribe.complete();
+}
 
  get wishlist(){
     return this._wishlist;
  }
 
+ newWishlistAdded(wishlist : Wishlist){
+   this._wishlistDataService.addNewWishlist(wishlist).subscribe(item => this._wishlist.push(item));
+ }
 
+ removeWishlist(wishlist : Wishlist){
+  this._wishlistDataService.removeWishlist(wishlist).subscribe(item => this._wishlist = this._wishlist
+        .filter(val => item.id !== val.id));
+ }
 
-
-  newWishlistItemAdded(wishlistItem){
-    console.log(wishlistItem);
-    this._wishlistDataService.addNewWishlistItem(wishlistItem).subscribe(item => this._wishlist[1 ].wishlistItems.push(item));
-    //this._wishlistItemDataService.addNewWishlistItem(wishlistItem);
+  newWishlistItemAdded(wishlistItem : WishlistItem){
+    this._wishlistDataService.addNewWishlistItem(wishlistItem, this._wishlist[0])
+       .subscribe(item => this._wishlist[0].wishlistItems.push(item));
+       
   }
 
 

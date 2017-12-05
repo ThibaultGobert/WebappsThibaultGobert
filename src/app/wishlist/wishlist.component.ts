@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import {Wishlist} from '../wishlist/wishlist.model';
+import {WishlistDataService} from './wishlist-data.service';
 
 @Component({
   selector: 'app-wishlist',
@@ -8,14 +9,18 @@ import {Wishlist} from '../wishlist/wishlist.model';
 })
 export class WishlistComponent implements OnInit {
   @Input() public wishlist: Wishlist;
-
-  constructor() { 
+  @Output() public deleteWishlist = new EventEmitter<Wishlist>();
+  constructor(private _wishlistDataService : WishlistDataService) { 
 
     
   }
  
   ngOnInit() {
   }
+
+  removeWishlist(){
+    this.deleteWishlist.emit(this.wishlist);
+}
 
  
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import {WishlistItem} from '../wishlist-item/wishlistItem.model';
 
 @Component({
@@ -12,7 +12,7 @@ export class AddWishlistItemComponent implements OnInit {
 
 
   addWishlistItem(newWishlistItemName : HTMLInputElement) : boolean {
-    let wishlistItem = new WishlistItem(newWishlistItemName.value)
+    let wishlistItem = new WishlistItem(newWishlistItemName.value);
     this.newWishlistItem.emit(wishlistItem);
     return false;
   }

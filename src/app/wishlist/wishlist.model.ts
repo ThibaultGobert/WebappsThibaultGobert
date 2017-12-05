@@ -1,14 +1,24 @@
 import {WishlistItem} from '../wishlist-item/wishlistItem.model';
 
 export class Wishlist{
-    
-    private _wishlistItems = new Array<WishlistItem>();
+    private _id: string;
+    private _wishlistItems;
     private _name : string;
 
    
-    constructor(name : string, wishlistItems) {
+    static fromJSON(json): Wishlist {
+        const rec = new Wishlist(json.name, json.wishlistItems);
+        rec._id = json._id;
+        return rec;
+    }
+
+    constructor(name : string, wishlistItems?: WishlistItem[]) {
         this._name = name;
-        this._wishlistItems = wishlistItems;
+        this._wishlistItems = wishlistItems || new Array<Wishlist>();
+    }  
+
+    get id(){
+       return this._id;
     }
 
     get name(){
@@ -27,13 +37,17 @@ export class Wishlist{
         this._wishlistItems = wishlistItems;
     }
 
-    addWishlistItem(name: string, price?: number){
-        this._wishlistItems.push(new WishlistItem(name, price));
+    addWishlistItem(wishlistItem : WishlistItem){
+        this._wishlistItems.push(wishlistItem);
     }
+
+ 
 
     toJSON(){
         return {
-            name: this._name
+            _id : this._id,
+            name: this._name,
+            wishlistItems: this._wishlistItems
         };
     }
 }

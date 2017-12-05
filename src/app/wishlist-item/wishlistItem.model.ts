@@ -1,10 +1,21 @@
 export class WishlistItem{
+    private _id: string;
     private _name: string;
     private _price?: number;
+
+    static fromJSON(json) : WishlistItem {
+        const rec = new WishlistItem(json.name);
+        rec._id = json._id;
+        return rec;
+    }
 
     constructor(name: string, price?: number) {
         this._name = name;
         this._price=price;
+    }
+
+    get id(){
+       return this._id;
     }
 
     get name(){
@@ -21,5 +32,12 @@ export class WishlistItem{
 
     set price(price : number){
         this._price = price;
+    }
+
+    toJSON(){
+        return {
+            _id: this._id,
+            name : this._name,
+        }
     }
 }
