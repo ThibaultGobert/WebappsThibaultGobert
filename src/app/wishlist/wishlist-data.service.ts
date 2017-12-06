@@ -1,23 +1,27 @@
 import { Injectable } from '@angular/core';
 import {Wishlist} from './wishlist.model';
 
-import { Http, Response} from '@angular/http';
+import { Http, Response, Headers} from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import { WishlistItem } from './wishlist-item/wishlistItem.model';
+import { AuthenticationService } from '../user/authentication.service';
 
 @Injectable()
 export class WishlistDataService {
-  private _appUrl = 'http://localhost:4200/API';
-  private _wishlist : Wishlist;
+  private _appUrl = 'http://localhost:4200/API/';
+  private _wishlist;
 
-  constructor(private http: Http) { 
+  constructor(private http: Http, private auth: AuthenticationService) { 
 
   }
 
   get wishlist(): Observable<Wishlist[]>{
-    return this.http.get(`${this._appUrl}/wishlists/`).map(response => response.json().map( item => Wishlist.fromJSON(item)));
+    return this.http.get(`${this._appUrl}/wishlists/`, 
+      { headers: new Headers({Authorization: `Bearer ${this.auth.token}`}) })
+      .map(response => response.json().map( item => Wishlist.fromJSON(item)));
   }
+
 
   getWishlist(id): Observable<Wishlist>{
     return this.http.get(`${this._appUrl}/wishlist/${id}`).map(response => response.json()).map( item => 

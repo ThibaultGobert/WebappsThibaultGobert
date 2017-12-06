@@ -1,13 +1,15 @@
 var express = require('express');
 var router = express.Router();
-
 let mongoose = require('mongoose');
+let jwt = require('express-jwt');
+
 let Wishlist = mongoose.model('Wishlist');
 let WishlistItem = mongoose.model('WishlistItem');
 
+let auth = jwt({secret: process.env.WISHLIST_BACKEND_SECRET, userProperty: 'payload'});
+
 /* GET home page. */
-//all wishlists but set to [0] to get one, replace with user later 
-router.get('/API/wishlists/', function(req,res,next){
+router.get('/API/wishlists/', auth, function(req,res,next){
   let query = Wishlist.find().populate('wishlistItems');
   query.exec(function (err, wishlist){
     if (err) return next(err);
@@ -16,7 +18,7 @@ router.get('/API/wishlists/', function(req,res,next){
 });
 
 //puts a wishlist in db
-router.post('/API/wishlists/', function(req, res, next){
+router.post('/API/wishlists/', auth, function(req, res, next){
   let wishlist = new Wishlist({name: req.body.name});
   wishlist.save(function(err, post){
     if(err) {

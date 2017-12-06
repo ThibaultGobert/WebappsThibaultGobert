@@ -1,6 +1,8 @@
+let mongoose = require('mongoose');
+let crypto = require('crypto');
+let jwt = require ('jsonwebtoken');
 
-
-let UserSchema = new mongoose.Schem({
+let UserSchema = new mongoose.Schema({
     username: { type: String, lowercase: true, unique: true},
     hash: String,
     salt: String
@@ -26,3 +28,5 @@ UserSchema.methods.generateJWT = function(){
         exp: parseInt(exp.getTime()  / 1000)
     }, process.env.WISHLIST_BACKEND_SECRET);
 }
+
+mongoose.model('User', UserSchema);

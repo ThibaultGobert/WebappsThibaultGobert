@@ -5,6 +5,7 @@ import { AppRoutingModule} from './app-routing/app-routing.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { WishlistModule } from './wishlist/wishlist.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserModule } from './user/user.module';
 
 
 
@@ -17,7 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    WishlistModule,
+    UserModule,
     AppRoutingModule
   ],
   providers: [],

@@ -7,12 +7,20 @@
 
     <div class="ui container">
       <div class="ui two item menu">
-          <a class='item' routerLinkActive='active' routerLink="/wishlist/5a26f1dc33acfa3478ccb963">detail</a>
           
-        <a class='item' routerLinkActive='active' routerLink="/wishlist/list">Wishlists</a>
-        <a class='item' routerLinkActive='active' routerLink="/wishlist/add">Add Wishlist</a>
+        <a class='item' routerLinkActive='active' routerLink="wishlist/list">Wishlists</a>
+        <a class='item' routerLinkActive='active' routerLink="wishlist/add">Add Wishlist</a>
 
-        
+        <a *ngIf='(currentUser | async) else loginlink' class="item" routerLinkActive='active' routerLink="/logout">{{currentUser|async}}</a>
+       
+        <ng-template #loginlink>
+          <a class='item' routerLinkActive='active' routerLink="/login">log in</a>
+        </ng-template>
+        <!--
+          <a class='item' routerLinkActive='active' routerLink="wishlist/5a26f1dc33acfa3478ccb963">detail</a>
+       
+        -->
+
       </div>
     <router-outlet></router-outlet>
     </div>

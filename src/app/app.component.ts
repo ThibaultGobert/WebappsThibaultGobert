@@ -3,7 +3,8 @@ import {WishlistDataService} from './wishlist/wishlist-data.service';
 import {Wishlist} from './wishlist/wishlist.model';
 import {Observable} from 'rxjs/Rx';
 import {Subject} from 'rxjs/Subject';
-import 'rxjs/add/operator/takeUntil';;
+import 'rxjs/add/operator/takeUntil'; import { AuthenticationService } from './user/authentication.service';
+;
 
 @Component({
   selector: 'app-root',
@@ -14,8 +15,12 @@ import 'rxjs/add/operator/takeUntil';;
 
 export class AppComponent implements OnInit{
 
-  constructor(){
+  constructor(private authService: AuthenticationService){
     
+  }
+
+  get currentUser(): Observable<string> {
+    return this.authService.user$;
   }
 
  ngOnInit(){
