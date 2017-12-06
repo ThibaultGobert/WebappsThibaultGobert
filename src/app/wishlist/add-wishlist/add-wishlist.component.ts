@@ -5,6 +5,7 @@ import {FormGroup, FormControl, Validators, FormBuilder, FormArray} from '@angul
 import {Observable} from 'rxjs/Rx';
 import { WishlistDataService } from '../wishlist-data.service';
 import { Wishlist } from '../wishlist.model';
+import { AuthenticationService } from '../../user/authentication.service';
 
 @Component({
   selector: 'app-add-wishlist',
@@ -15,7 +16,8 @@ export class AddWishlistComponent implements OnInit {
   @Output() public newWishlist = new EventEmitter<Wishlist>();
   private _wishlist: FormGroup;
 
-  constructor(private fb: FormBuilder, private _wishlistDataService : WishlistDataService){
+  constructor(private fb: FormBuilder, private _wishlistDataService : WishlistDataService,
+       private _authenticationService : AuthenticationService){
 
   }
 

@@ -5,6 +5,7 @@ export class Wishlist{
     private _id: string;
     private _wishlistItems;
     private _name : string;
+   // private _username: string;
 
    
     static fromJSON(json): Wishlist {
@@ -13,7 +14,7 @@ export class Wishlist{
         return rec;
     }
 
-    constructor(name : string, wishlistItems?: WishlistItem[]) {
+    constructor( name : string, wishlistItems?: WishlistItem[]) {
         this._name = name;
         this._wishlistItems = wishlistItems || new Array<Wishlist>();
     }  
@@ -21,6 +22,14 @@ export class Wishlist{
     get id(){
        return this._id;
     }
+
+ //   set username(username: string){
+//        this._username = username;
+ //   }
+    
+//    get username(){
+ //       return this._username;
+ //   }
 
     get name(){
         return this._name

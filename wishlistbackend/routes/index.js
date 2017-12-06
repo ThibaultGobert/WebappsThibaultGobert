@@ -17,7 +17,6 @@ router.get('/API/wishlists/', auth, function(req,res,next){
   });
 });
 
-//puts a wishlist in db
 router.post('/API/wishlists/', auth, function(req, res, next){
   let wishlist = new Wishlist({name: req.body.name});
   wishlist.save(function(err, post){
