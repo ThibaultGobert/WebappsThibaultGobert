@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {Wishlist} from './wishlist.model';
-import {WishlistItem} from '../wishlist-item/wishlistItem.model';
 
 import { Http, Response} from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
+import { WishlistItem } from './wishlist-item/wishlistItem.model';
 
 @Injectable()
 export class WishlistDataService {
@@ -20,8 +20,8 @@ export class WishlistDataService {
   }
 
   getWishlist(id): Observable<Wishlist>{
-    return this.http.get(`${this._appUrl}/wishlist/${id}`).map(response => response.json().map( item => 
-    Wishlist.fromJSON(item)));
+    return this.http.get(`${this._appUrl}/wishlist/${id}`).map(response => response.json()).map( item => 
+    Wishlist.fromJSON(item));
   }
 
   addNewWishlist(rec) : Observable<Wishlist>{

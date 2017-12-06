@@ -1,10 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import {Wishlist} from '../wishlist/wishlist.model';
 import {WishlistItem} from '../wishlist-item/wishlistItem.model';
-import {WishlistDataService} from '../wishlist/wishlist-data.service';
 import {FormGroup, FormControl, Validators, FormBuilder, FormArray} from '@angular/forms';
 
 import {Observable} from 'rxjs/Rx';
+import { WishlistDataService } from '../wishlist-data.service';
+import { Wishlist } from '../wishlist.model';
 
 @Component({
   selector: 'app-add-wishlist',
@@ -52,8 +52,6 @@ export class AddWishlistComponent implements OnInit {
     for(const wishlistItem of this._wishlist.value.wishlistItems) {
       if( wishlistItem.name.length >2){
         wishlist.addWishlistItem(new WishlistItem(wishlistItem.name));
-        console.log(this._wishlist.value.name);
-        console.log(this._wishlist.value.wishlistItems);
       }
     }
     this._wishlistDataService.addNewWishlist(wishlist).subscribe(item => {
@@ -65,6 +63,7 @@ export class AddWishlistComponent implements OnInit {
           item.addWishlistItem(wishlistItem);
 
         }
+        return item;
       })  
     })
    // this.newWishlist.emit(wishlist);

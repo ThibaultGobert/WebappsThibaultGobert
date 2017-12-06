@@ -1,4 +1,5 @@
-import {WishlistItem} from '../wishlist-item/wishlistItem.model';
+import { WishlistItem } from "./wishlist-item/wishlistItem.model";
+
 
 export class Wishlist{
     private _id: string;

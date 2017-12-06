@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import {Wishlist} from '../wishlist/wishlist.model';
-import {WishlistDataService} from './wishlist-data.service';
+import { Wishlist } from '../wishlist.model';
+import { WishlistDataService } from '../wishlist-data.service';
 
 @Component({
   selector: 'app-wishlist',

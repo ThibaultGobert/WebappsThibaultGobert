@@ -4,33 +4,19 @@
     Welcome to {{title}}!
   </h1>
   <div>
-    <ul>
-        <app-add-wishlist (newWishlist)="newWishlistAdded($event)"></app-add-wishlist>
+
+    <div class="ui container">
+      <div class="ui two item menu">
+          <a class='item' routerLinkActive='active' routerLink="/wishlist/5a26f1dc33acfa3478ccb963">detail</a>
+          
+        <a class='item' routerLinkActive='active' routerLink="/wishlist/list">Wishlists</a>
+        <a class='item' routerLinkActive='active' routerLink="/wishlist/add">Add Wishlist</a>
+
         
-      
-      <li *ngFor="let wishlist of _wishlist">
-          <app-wishlist [wishlist]="wishlist" (deleteWishlist)='removeWishlist($event)'></app-wishlist>
-          
+      </div>
+    <router-outlet></router-outlet>
+    </div>
 
 
-          <app-add-wishlist-item (newWishlistItem)="newWishlistItemAdded($event)"></app-add-wishlist-item>  
-          
-          <ul>
-              <li *ngFor="let wishlistItem of wishlist.wishlistItems">
-                <app-wishlist-item [wishlistItem]= "wishlistItem"></app-wishlist-item>
-              </li>
-            </ul>
-      </li>
-      
-    </ul>
-
-    
-    
-
-     
-      
-      
-      
   </div>
-
 </div>

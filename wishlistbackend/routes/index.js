@@ -27,7 +27,7 @@ router.post('/API/wishlists/', function(req, res, next){
 });
 
 router.param('wishlist', function(req,res, next, id){
-  let query = Wishlist.findById(id);
+  let query = Wishlist.findById(id).populate('wishlistItems');
   query.exec(function (err, wishlist){
     if (err) {
       return next(err);
