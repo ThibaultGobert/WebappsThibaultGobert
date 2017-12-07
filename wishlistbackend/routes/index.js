@@ -18,7 +18,7 @@ router.get('/API/wishlists/', auth, function(req,res,next){
 });
 
 router.post('/API/wishlists/', auth, function(req, res, next){
-  let wishlist = new Wishlist({name: req.body.name});
+  let wishlist = new Wishlist({name: req.body.name, username: req.body.username});
   wishlist.save(function(err, post){
     if(err) {
       return next(err);

@@ -1,5 +1,8 @@
 <p>Wishlist: </p>
-<p> Wishlist for {{wishlist.name}}:</p>
+<p> Wishlist for
+   <a class='item' routerLinkActive='' [routerLink]="['../../wishlist/', wishlist._id]">
+  {{wishlist.name}}</a>
+  :</p>
 
 <div class="ui large form segment"> 
         <button (click)="removeWishlist()" class="ui positive right floated button">

@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 
 let WishlistSchema = new mongoose.Schema({
-  //  username : String,
+    username : String,
     name : String,
     wishlistItems : [{type: mongoose.Schema.Types.ObjectId, ref: 'WishlistItem'}]
 });

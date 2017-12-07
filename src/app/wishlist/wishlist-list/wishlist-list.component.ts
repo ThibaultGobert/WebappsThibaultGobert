@@ -21,7 +21,8 @@ private myUnsubscribe: Subject<boolean> = new Subject<boolean>();
   }
 
   ngOnInit() {
-    this._wishlistDataService.wishlist.subscribe(items => this._wishlists = items);
+    this._wishlistDataService.wishlist.subscribe(items => this._wishlists = items.filter(val =>
+    val.username === JSON.parse(localStorage.getItem('currentUser')).username));
   }
 
 
@@ -41,10 +42,6 @@ private myUnsubscribe: Subject<boolean> = new Subject<boolean>();
         .filter(val => item.id !== val.id));
  }
 
-  newWishlistItemAdded(wishlistItem : WishlistItem){
-    this._wishlistDataService.addNewWishlistItem(wishlistItem, this._wishlists[0])
-       .subscribe(item => this._wishlists[0].wishlistItems.push(item));
-       
-  }
+
 
 }

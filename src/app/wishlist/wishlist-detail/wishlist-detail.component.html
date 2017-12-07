@@ -1,3 +1,9 @@
-<p>
-  {{_wishlist.name}} {{_wishlist.wishlistItems[0].name}}
-</p>
+{{_wishlist.name}}
+
+<app-add-wishlist-item (newWishlistItem)="newWishlistItemAdded($event)"></app-add-wishlist-item>  
+          
+<ul>
+  <li *ngFor="let wishlistItem of _wishlist.wishlistItems">
+    <app-wishlist-item [wishlistItem]= "wishlistItem"></app-wishlist-item>
+  </li>
+</ul>

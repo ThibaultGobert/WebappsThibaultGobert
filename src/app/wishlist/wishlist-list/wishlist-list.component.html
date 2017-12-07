@@ -2,13 +2,11 @@
       <li *ngFor="let wishlist of _wishlists">
           <app-wishlist [wishlist]="wishlist" (deleteWishlist)='removeWishlist($event)'></app-wishlist>
 
-          <app-add-wishlist-item (newWishlistItem)="newWishlistItemAdded($event)"></app-add-wishlist-item>  
-          
           <ul>
               <li *ngFor="let wishlistItem of wishlist.wishlistItems">
                 <app-wishlist-item [wishlistItem]= "wishlistItem"></app-wishlist-item>
               </li>
-            </ul>
+          </ul>
       </li>
       
     </ul>

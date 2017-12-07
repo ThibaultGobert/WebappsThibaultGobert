@@ -16,8 +16,7 @@ export class AddWishlistComponent implements OnInit {
   @Output() public newWishlist = new EventEmitter<Wishlist>();
   private _wishlist: FormGroup;
 
-  constructor(private fb: FormBuilder, private _wishlistDataService : WishlistDataService,
-       private _authenticationService : AuthenticationService){
+  constructor(private fb: FormBuilder, private _wishlistDataService : WishlistDataService){
 
   }
 
@@ -28,6 +27,7 @@ export class AddWishlistComponent implements OnInit {
   ngOnInit() {
     this._wishlist = this.fb.group({
       name : ['', [Validators.required, Validators.minLength(2)]],
+      username:[''],
       wishlistItems: this.fb.array([ this.createWishlistItems()]) 
     });
     
@@ -40,7 +40,8 @@ export class AddWishlistComponent implements OnInit {
 
   createWishlistItems() : FormGroup {
     return this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]]
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      username: ['']
     });
   }
   
@@ -50,12 +51,13 @@ export class AddWishlistComponent implements OnInit {
 
   
   onSubmit(){
-    const wishlist = new Wishlist(this._wishlist.value.name);
+    const wishlist = new Wishlist(this._wishlist.value.name, JSON.parse(localStorage.getItem('currentUser')).username);
     for(const wishlistItem of this._wishlist.value.wishlistItems) {
       if( wishlistItem.name.length >2){
         wishlist.addWishlistItem(new WishlistItem(wishlistItem.name));
       }
     }
+    console.log(wishlist);
     this._wishlistDataService.addNewWishlist(wishlist).subscribe(item => {
       const wlItem = wishlist.wishlistItems.map( it => 
         this._wishlistDataService.addNewWishlistItem(it, item));
@@ -65,6 +67,8 @@ export class AddWishlistComponent implements OnInit {
           item.addWishlistItem(wishlistItem);
 
         }
+        console.log(wishlist);
+        console.log(item);
         return item;
       })  
     })

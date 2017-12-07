@@ -29,7 +29,8 @@ export class WishlistDataService {
   }
 
   addNewWishlist(rec) : Observable<Wishlist>{
-    return this.http.post(`${this._appUrl}/wishlists/`, rec).map(res => res.json()).map(item => Wishlist.fromJSON(item));
+    return this.http.post(`${this._appUrl}/wishlists/`, rec,
+    { headers: new Headers({Authorization: `Bearer ${this.auth.token}`}) }).map(res => res.json()).map(item => Wishlist.fromJSON(item));
   }
 
   removeWishlist(rec) {
