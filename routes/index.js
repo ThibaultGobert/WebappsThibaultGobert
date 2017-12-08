@@ -8,12 +8,6 @@ let WishlistItem = mongoose.model('WishlistItem');
 
 let auth = jwt({secret: process.env.WISHLIST_BACKEND_SECRET, userProperty: 'payload'});
 
-/* GET home page. */
-router.get("/", function (req,res){
-  console.log("get home page werkt");
-});
-
-
 
 router.get('/API/wishlists/', auth, function(req,res,next){
   let query = Wishlist.find().populate('wishlistItems');
