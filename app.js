@@ -10,7 +10,7 @@ var mongoose = require('mongoose');
 require('dotenv').config()
 require('./models/User');
 require('./models/Wishlist');
-require('./models/Wishlistitem');
+require('./models/WishlistItem');
 
 require('./config/passport');
 
