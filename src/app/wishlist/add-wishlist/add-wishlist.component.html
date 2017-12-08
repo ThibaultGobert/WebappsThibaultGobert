@@ -6,7 +6,7 @@
     </div>
 
 
-    <div formArrayName='wishlistItems' *ngFor='let item of _wishlist.get("wishlistItems").controls;
+    <div formArrayName='wishlistItems' *ngFor='let item of _wishlist.get("wishlistItems")["controls"];
            let i = index'>
       <div class="input-group" [formGroupName] = 'i'>
         <label class="input-group-addon" for="wishlistItem_name">Wishlist item </label>
