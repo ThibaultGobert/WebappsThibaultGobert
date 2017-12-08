@@ -1,3 +1,28 @@
 .ng-valid[required]{
     border-left: 10px solid #42A948 !important;
 }
+
+.ui{
+   margin-left: 2%;
+   font-weight :bold;
+}
+.input-group-addon{
+  width: 100px;
+}
+
+.input-group{
+  margin-left: 2%;
+  margin-bottom: 2%;
+}
+
+.form-control{
+  width: 300px;
+}
+
+button{
+  margin-left: 2%;
+}
+.alert{
+  margin-top: 2%;
+  width: 80%;
+}

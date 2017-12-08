@@ -1,31 +1,30 @@
-<form class="ui large form segment" [formGroup]='_wishlist' (ngSubmit)='onSubmit()'> 
+<form  [formGroup]='_wishlist' (ngSubmit)='onSubmit()'> 
     <h3 class="ui header">Make a new wishlist</h3>
-    <div class="field">
-      <label for="name_id">Name:</label> 
-      <input type='text' id="name_id" formControlName='name'>
+    <div class="input-group">
+      <label class="input-group-addon" for="name_id">Name</label> 
+      <input class="form-control" type='text' id="name_id" placeholder="Wishlist name" formControlName='name'>
     </div>
-    <div *ngIf='_wishlist.get("name").errors?.required
-      && _wishlist.get("name").touched' class='ui pointing red basic label'>
-      error! this is required
-    </div>
+
 
     <div formArrayName='wishlistItems' *ngFor='let item of _wishlist.get("wishlistItems").controls;
            let i = index'>
-      <div [formGroupName] = 'i'>
-        <label for="wishlistItem_name">wishlistItem: </label>
+      <div class="input-group" [formGroupName] = 'i'>
+        <label class="input-group-addon" for="wishlistItem_name">Wishlist item </label>
         <div>                                 
-            <input type="text" id="wishlistItem_name" formControlName='name'>
+            <input class="form-control" type="text" id="wishlistItem_name" placeholder="Wishlist item" formControlName='name'>
         </div>
       </div>
     </div>
+    <button type='submit' [disabled]='!_wishlist.valid' class="btn btn-success" >Add </button>
+
+    <div *ngIf='_wishlist.get("name").errors?.required
+    && _wishlist.get("name").touched' class='alert alert-warning'>
+    Error! Name for wishlist is required!
+  </div>
+    
+    <div *ngIf='isSuccesfull'class="alert alert-success">A new Wishlist was made!</div>
+    
 
 
-    <button type='submit' >add </button>
   </form>	
 
-  <!--
-REMOVE {{_wishlist.value | json}} {{_wishlist.valid}}
-{{spy.className}}
-
-{{_wishlist.get("name").errors | json}}
-  -->

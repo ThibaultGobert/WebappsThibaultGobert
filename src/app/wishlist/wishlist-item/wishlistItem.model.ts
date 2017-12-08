@@ -1,5 +1,5 @@
 export class WishlistItem{
-    private _id: string;
+    public _id: string;
     private _name: string;
     private _price?: number;
 
@@ -12,10 +12,6 @@ export class WishlistItem{
     constructor(name: string, price?: number) {
         this._name = name;
         this._price=price;
-    }
-
-    get id(){
-       return this._id;
     }
 
     get name(){

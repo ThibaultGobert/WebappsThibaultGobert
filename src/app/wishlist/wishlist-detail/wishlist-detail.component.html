@@ -1,9 +1,30 @@
-{{_wishlist.name}}
+<h3 class="ui header">{{_wishlist.name}}</h3>
+
 
 <app-add-wishlist-item (newWishlistItem)="newWishlistItemAdded($event)"></app-add-wishlist-item>  
           
-<ul>
-  <li *ngFor="let wishlistItem of _wishlist.wishlistItems">
-    <app-wishlist-item [wishlistItem]= "wishlistItem"></app-wishlist-item>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let wishlistItem of _wishlist.wishlistItems">
+    <app-wishlist-item [wishlistItem]= "wishlistItem" (deleteWishlistItem)='removeWishlistItem($event)'></app-wishlist-item>
   </li>
 </ul>
+
+
+
+
+
+<style type="text/css">
+ .ui{
+   margin-left: 2%;
+ }
+ .list-group{
+   margin-top: 2%;
+ }
+ li{
+   margin-left: 2%;
+   margin-right: 10%;
+   background-color: #F5F5F5;
+   height: 50px;
+ }
+
+</style>

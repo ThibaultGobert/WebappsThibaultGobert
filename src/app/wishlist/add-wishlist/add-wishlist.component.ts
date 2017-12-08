@@ -15,6 +15,7 @@ import { AuthenticationService } from '../../user/authentication.service';
 export class AddWishlistComponent implements OnInit {
   @Output() public newWishlist = new EventEmitter<Wishlist>();
   private _wishlist: FormGroup;
+  private isSuccesfull;
 
   constructor(private fb: FormBuilder, private _wishlistDataService : WishlistDataService){
 
@@ -40,7 +41,7 @@ export class AddWishlistComponent implements OnInit {
 
   createWishlistItems() : FormGroup {
     return this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
+      name: [''],
       username: ['']
     });
   }
@@ -52,12 +53,12 @@ export class AddWishlistComponent implements OnInit {
   
   onSubmit(){
     const wishlist = new Wishlist(this._wishlist.value.name, JSON.parse(localStorage.getItem('currentUser')).username);
+    this.isSuccesfull=true;
     for(const wishlistItem of this._wishlist.value.wishlistItems) {
       if( wishlistItem.name.length >2){
         wishlist.addWishlistItem(new WishlistItem(wishlistItem.name));
       }
     }
-    console.log(wishlist);
     this._wishlistDataService.addNewWishlist(wishlist).subscribe(item => {
       const wlItem = wishlist.wishlistItems.map( it => 
         this._wishlistDataService.addNewWishlistItem(it, item));
@@ -65,10 +66,7 @@ export class AddWishlistComponent implements OnInit {
       Observable.forkJoin(...wlItem).subscribe(( wishlistItems: WishlistItem[]) => {
         for( const wishlistItem of wishlistItems){
           item.addWishlistItem(wishlistItem);
-
         }
-        console.log(wishlist);
-        console.log(item);
         return item;
       })  
     })

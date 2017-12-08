@@ -2,7 +2,7 @@ import { WishlistItem } from "./wishlist-item/wishlistItem.model";
 
 
 export class Wishlist{
-    private _id: string;
+    public _id: string;
     private _wishlistItems;
     private _name : string;
     private _username: string;

@@ -12,17 +12,17 @@ import { Wishlist } from '../wishlist.model';
   styleUrls: ['./wishlist-list.component.css']
 })
 export class WishlistListComponent implements OnInit {
-private _wishlists: Wishlist[];
+private _wishlists;
 private myUnsubscribe: Subject<boolean> = new Subject<boolean>();
 
 
   constructor(private _wishlistDataService : WishlistDataService ) {
-
   }
 
   ngOnInit() {
     this._wishlistDataService.wishlist.subscribe(items => this._wishlists = items.filter(val =>
     val.username === JSON.parse(localStorage.getItem('currentUser')).username));
+
   }
 
 

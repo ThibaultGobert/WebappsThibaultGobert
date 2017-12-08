@@ -33,9 +33,14 @@ export class WishlistDataService {
     { headers: new Headers({Authorization: `Bearer ${this.auth.token}`}) }).map(res => res.json()).map(item => Wishlist.fromJSON(item));
   }
 
-  removeWishlist(rec) {
+  removeWishlist(rec) : Observable<Wishlist>{
     return this.http.delete(`${this._appUrl}/wishlist/${rec.id}`).map(res => res.json()).map (item =>
     Wishlist.fromJSON(item));
+  }
+
+  getWishlistItem(rec, id): Observable<WishlistItem>{
+    return this.http.get(`${this._appUrl}/wishlist/${rec.id}/wishlistItems/${id}`).map(res => res.json()).map( item => 
+        WishlistItem.fromJSON(item));
   }
 
   //slide 42, addNewWishlistItem naar hier verplaatsen en dan nog eens wishlist getter aanroepen voor changes? 
@@ -43,6 +48,12 @@ export class WishlistDataService {
   addNewWishlistItem(wishlistItem: WishlistItem, rec: Wishlist) : Observable<WishlistItem>{
     return this.http.post(`${this._appUrl}/wishlist/${rec.id}/wishlistItems`, wishlistItem)
             .map(res => res.json()).map(item => WishlistItem.fromJSON(item));
+  }
+
+  removeWishlistItem(wishlistItem, rec : Wishlist) : Observable<Wishlist> {
+    return this.http.delete(`${this._appUrl}/wishlist/${rec.id}/wishlistItems/${wishlistItem._id}`)
+            .map(res => res.json()).map(item => Wishlist.fromJSON(item));
+
   }
 
   /*

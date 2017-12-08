@@ -10,12 +10,13 @@ import { WishlistDataService } from '../wishlist-data.service';
 export class WishlistComponent implements OnInit {
   @Input() public wishlist: Wishlist;
   @Output() public deleteWishlist = new EventEmitter<Wishlist>();
-  constructor(private _wishlistDataService : WishlistDataService) { 
+  constructor() { 
 
     
   }
  
   ngOnInit() {
+    
   }
 
   removeWishlist(){

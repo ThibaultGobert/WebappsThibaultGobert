@@ -1,12 +1,28 @@
-<p>Wishlist: </p>
-<p> Wishlist for
-   <a class='item' routerLinkActive='' [routerLink]="['../../wishlist/', wishlist._id]">
-  {{wishlist.name}}</a>
-  :</p>
-
-<div class="ui large form segment"> 
-        <button (click)="removeWishlist()" class="ui positive right floated button">
+<div class="panel panel-default">
+  <div class="panel-body">Wishlist --> <a class='item' routerLinkActive='' [routerLink]="['../../wishlist/', wishlist._id]">
+    {{wishlist.name}}</a>
+  
+    <div class="ui large form segment"> 
+        <button    (click)="removeWishlist()" class="btn btn-danger">
           remove wishlist
         </button>
+    </div>
+  </div>
+
 </div>
+
+
+<style type="text/css">
+.ui{
+  float: right;
+}
+
+.panel{
+  background-color: #E0E0E0;
+  margin-right: 10%;
+}
+
+</style>
+
+
 
