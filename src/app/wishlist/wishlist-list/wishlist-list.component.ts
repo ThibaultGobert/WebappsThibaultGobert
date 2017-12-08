@@ -12,8 +12,8 @@ import { Wishlist } from '../wishlist.model';
   styleUrls: ['./wishlist-list.component.css']
 })
 export class WishlistListComponent implements OnInit {
-private _wishlists;
-private myUnsubscribe: Subject<boolean> = new Subject<boolean>();
+public _wishlists;
+public myUnsubscribe: Subject<boolean> = new Subject<boolean>();
 
 
   constructor(private _wishlistDataService : WishlistDataService ) {

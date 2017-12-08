@@ -14,8 +14,8 @@ import { AuthenticationService } from '../../user/authentication.service';
 })
 export class AddWishlistComponent implements OnInit {
   @Output() public newWishlist = new EventEmitter<Wishlist>();
-  private _wishlist: FormGroup;
-  private isSuccesfull;
+  public _wishlist: FormGroup;
+  public isSuccesfull;
 
   constructor(private fb: FormBuilder, private _wishlistDataService : WishlistDataService){
 

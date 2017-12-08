@@ -10,7 +10,7 @@ import { WishlistItem } from '../wishlist-item/wishlistItem.model';
   styleUrls: ['./wishlist-detail.component.css']
 })
 export class WishlistDetailComponent implements OnInit {
-  private _wishlist: Wishlist;
+  public _wishlist: Wishlist;
 
   constructor(private router: Router, private route: ActivatedRoute, private _wishlistDataService: WishlistDataService) { }
 

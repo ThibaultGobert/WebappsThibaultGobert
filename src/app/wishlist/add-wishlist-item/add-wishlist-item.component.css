@@ -1,0 +1,17 @@
+
+  .input-group-addon{
+    width: 100px;
+  }
+
+  .input-group{
+    margin-left: 2%;
+    float: left;
+  }
+
+  .form-control{
+    width: 300px;
+  }
+
+  button{
+    margin-left: 2%;
+  }

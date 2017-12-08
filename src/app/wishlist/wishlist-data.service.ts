@@ -9,7 +9,7 @@ import { AuthenticationService } from '../user/authentication.service';
 
 @Injectable()
 export class WishlistDataService {
-  private _appUrl = 'http://localhost:4200/API';
+  private _appUrl = '/API';
   private _wishlist;
 
   constructor(private http: Http, private auth: AuthenticationService) { 
