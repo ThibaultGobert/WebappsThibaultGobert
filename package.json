@@ -8,10 +8,12 @@
   "scripts": {
     "ng": "ng",
     "start": "node ./bin/www",
+    "start-test": "node ./bin/www",
     "build": "ng build",
     "test": "node ./node_modules/jasmine/bin/jasmine.js",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build -prod --aot"
   },
   "private": true,
   "dependencies": {
