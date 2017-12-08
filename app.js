@@ -14,8 +14,7 @@ require('./models/Wishlistitem');
 
 require('./config/passport');
 
-mongoose.connect('mongodb://wishlistUser:wachtwoord123@ds123136.mlab.com:23136/wishlistapp', {useMongoClient : true} );
-
+mongoose.connect(process.env.WISHLIST_DATABASE, {useMongoClient : true} );
 
 var index = require('./routes/index');
 var users = require('./routes/users');
