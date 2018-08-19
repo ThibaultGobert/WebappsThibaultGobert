@@ -3,7 +3,7 @@ import {WishlistItem} from '../wishlist-item/wishlistItem.model';
 import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/takeUntil'; import { WishlistDataService } from '../wishlist-data.service';
 import { Wishlist } from '../wishlist.model';
-;
+
 
 
 @Component({

@@ -5,9 +5,26 @@ let jwt = require('express-jwt');
 
 let Wishlist = mongoose.model('Wishlist');
 let WishlistItem = mongoose.model('WishlistItem');
+let User = mongoose.model('User');
 
 let auth = jwt({secret: process.env.WISHLIST_BACKEND_SECRET, userProperty: 'payload'});
 
+
+router.get('/API/user', function(req, res) {
+  User.find({}, function (err, users) {
+    if(err){
+      return next(err);
+    }
+    res.json(users);
+  });
+})
+
+router.post('/API/user', function(req, res){
+  var user = new User(req.body);
+  user.save(function (err, user){
+    res.json(user);
+  });
+})
 
 router.get('/API/wishlists/', auth, function(req,res,next){
   let query = Wishlist.find().populate('wishlistItems');

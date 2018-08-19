@@ -1,0 +1,38 @@
+
+<div class="container">
+    <div *ngIf="_friends?.length==0 || _friends==undefined;else followerslist" >
+            <p> Oh no! You don't have any friends yet, {{_currentUser.username}}! </p>
+            <p> Maybe you can find some new friends to follow? </p>
+            <p> <button type="button" (click)="showRegistered()" class="btn">Click here</button> to see a list of registered people!</p>
+    </div>
+    <div *ngIf="_showRegistered" class="registeredlist">
+        <ul>
+            <li *ngFor="let user of _registeredUsers">
+                <p> {{user}} <button type="button" (click)="addFriend(user)" class="customButton">Follow</button></p>
+            </li>
+        </ul>
+    </div>
+    <div class="friendlist">
+        <ng-template #followerslist>
+            People you are following: 
+            <ul>
+                <li *ngFor="let friend of _friends">
+                   <p> {{friend}} <button type="button" (click)="removeFriend(friend)" class="customButton">Unfollow</button></p>
+                </li>
+            </ul>
+        </ng-template>
+    </div>
+</div>
+
+<style>
+    .container{
+        display: flex;
+        justify-content: center;
+    }
+    .customButton{
+        margin-left: 3%;
+    }
+    ul{
+        width: 200px;
+    }
+</style>

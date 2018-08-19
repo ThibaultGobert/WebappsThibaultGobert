@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Wishlist} from './wishlist.model';
 
 import { Http, Response, Headers} from '@angular/http';
-import { Observable } from 'rxjs/Rx';
+import { Observable, BehaviorSubject } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import { WishlistItem } from './wishlist-item/wishlistItem.model';
 import { AuthenticationService } from '../user/authentication.service';
@@ -21,7 +21,6 @@ export class WishlistDataService {
       { headers: new Headers({Authorization: `Bearer ${this.auth.token}`}) })
       .map(response => response.json().map( item => Wishlist.fromJSON(item)));
   }
-
 
   getWishlist(id): Observable<Wishlist>{
     return this.http.get(`${this._appUrl}/wishlist/${id}`).map(response => response.json()).map( item => 
